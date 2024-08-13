@@ -18,7 +18,7 @@ export default function Register() {
      
      try {
       
-    const res = await axios.post('http://localhost:3000/register',{
+    const res = await axios.post('https://expensetracker.onwebapp.io//register',{
          userName,
          email,
          password
