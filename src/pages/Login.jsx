@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import { useExpense } from '../Context/ExpensContext'
+import { endpoint } from '../App'
 
 export default function Login() {
   
@@ -18,7 +19,7 @@ const navigate = useNavigate()
     console.log(email,password)
     
 try {
-    const res = await axios.post('http://localhost:3000/login',{      
+    const res = await axios.post(`${endpoint}/login`,{      
          email,
          password
       },

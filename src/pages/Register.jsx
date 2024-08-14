@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
+import { endpoint } from '../App'
 
 export default function Register() {
 
@@ -18,7 +19,7 @@ export default function Register() {
      
      try {
       
-    const res = await axios.post('https://expensetracker.onwebapp.io/register',{
+    const res = await axios.post(`${endpoint}/register`,{
          userName,
          email,
          password

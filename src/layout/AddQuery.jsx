@@ -4,6 +4,7 @@ import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 
 import Error from '../components/Error';
+import { endpoint } from '../App';
 
 export default function AddQuery({total,setTotal}) {
 
@@ -77,11 +78,11 @@ useEffect(function(){
 try {
   
   
-      const profileRes = await axios.get('http://localhost:3000/getProfile',{
+      const profileRes = await axios.get(`${endpoint}/getProfile`,{
         withCredentials: true,
     })
      
-        const res = await axios.get('http://localhost:3000/currentdata',{
+        const res = await axios.get(`${endpoint}/currentdata`,{
           withCredentials:true,
         })
   
@@ -90,7 +91,7 @@ try {
         if(!res?.data?.data?.length) throw new Error('Add New Entries')
   
           console.log(res.data.data.length)
-        const recordRes = await axios.get(`http://localhost:3000/singlerecord/${profileRes.data?.data.userRecords.at(-1)}`,{
+        const recordRes = await axios.get(`${endpoint}/singlerecord/${profileRes.data?.data.userRecords.at(-1)}`,{
           withCredentials:true,
         })
        
@@ -121,7 +122,7 @@ console.log(error.message)
 
 async function handleAddRecord(){
  try {
-   const res = await  axios.post('http://localhost:3000/addincome',{
+   const res = await  axios.post(`${endpoint}/addincome`,{
        income:total
      },{
        withCredentials:true

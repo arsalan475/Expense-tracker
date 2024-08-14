@@ -5,6 +5,7 @@ import { useFetch } from '../customHooks/useFetch';
 import Loader from '../components/Loader';
 import toast, { Toaster } from 'react-hot-toast';
 import Error from '../components/Error';
+import { endpoint } from '../App';
 
 
 
@@ -36,7 +37,7 @@ export default function AllData() {
 
           if(!searchByDate && !searchByMonth) return
          
-          const res = await axios.get(`http://localhost:3000/filter?${searchBy}`,{
+          const res = await axios.get(`${endpoint}/filter?${searchBy}`,{
             withCredentials:true
           }); 
         

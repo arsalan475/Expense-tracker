@@ -14,7 +14,7 @@ import Home from './pages/Home.jsx'
 import Loader from './components/Loader.jsx'
 import ProtectedRoute from './protect route/ProtectedRoute.jsx'
 
-
+export const endpoint = 'https://expense-track-backend-staging.up.railway.app'
 
 export default function App() {
 

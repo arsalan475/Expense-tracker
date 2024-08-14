@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useExpense } from '../Context/ExpensContext'
+import { endpoint } from '../App'
 
 export default function Profile() {
 
@@ -11,7 +12,7 @@ const [profile,setProfile] = useState(null)
 
 useEffect(function(){
    async function getProfile(){
-    const res = await axios.get('http://localhost:3000/getProfile',{
+    const res = await axios.get(`${endpoint}/getProfile`,{
         withCredentials: true,
     })
 

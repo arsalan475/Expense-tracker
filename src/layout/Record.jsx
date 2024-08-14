@@ -4,6 +4,7 @@ import axios from 'axios'
 import Summary from './Summary'
 import toast, { Toaster } from 'react-hot-toast'
 import Loader from '../components/Loader'
+import { endpoint } from '../App'
 
 
 
@@ -29,7 +30,7 @@ async function handleDelete(id){
 
 
   try {
-  const res = await axios.post(`http://localhost:3000/remove/${id}`)
+  const res = await axios.post(`${endpoint}/remove/${id}`)
    console.log(res.data.msg)
   dispatch({type:'delete/entry',payload:id})
   toast.success('Successfully Deleted',{
@@ -46,7 +47,7 @@ async function handleDelete(id){
 
 async function handleCloseRecord(){
   try {
-    const res = await axios.post('http://localhost:3000/closerecord',
+    const res = await axios.post(`${endpoint}/closerecord`,
        {
         saving,
         income
