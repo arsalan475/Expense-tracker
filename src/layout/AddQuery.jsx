@@ -158,7 +158,7 @@ async function handleEntries(){
   }
 
   try{
-    const res = await axios.post('http://localhost:3000/add',
+    const res = await axios.post(`${endpoint}/add`,
       {
         title,
         amount,
