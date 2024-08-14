@@ -1,4 +1,5 @@
 import axios from "axios"
+import { endpoint } from "../App"
 
 
 
@@ -11,7 +12,7 @@ async function getData(){
    
          
         try {
-          const res = await axios.get('http://localhost:3000/alldata',{
+          const res = await axios.get(`${endpoint}/alldata`,{
             withCredentials:true,
           })
 
