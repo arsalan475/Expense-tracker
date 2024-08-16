@@ -47,7 +47,7 @@ if(loading && !profile?.email){
     <div  className='flex flex-col gap-y-8 w-full items-center'>
       <div className='flex justify-center w-full text-lg items-center flex-col gap-3'>
         <h1>Profile details</h1>
-        <div  className='w-40 h-40 rounded-full flex justify-center ' > </div>
+        <div  className='w-40 h-40 rounded-full flex justify-center bg-orange-300' > </div>
       </div>
       
       <div className=' w-full flex justify-center '>
