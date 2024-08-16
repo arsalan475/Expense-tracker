@@ -15,10 +15,14 @@ const navigate = useNavigate()
 
   const {setUser} = useExpense()
 
+  const [btnLoading,setBtnLoading] = useState(false)
+
   async function handleLogin(){
-    console.log(email,password)
-    
+   
+    if(!email || !password) return
 try {
+
+  setBtnLoading(true)
     const res = await axios.post(`${endpoint}/login`,{      
          email,
          password
@@ -42,6 +46,8 @@ try {
     },
   duration:2000
   })
+}finally{
+  setBtnLoading(false)
 }
    }
 
@@ -58,7 +64,7 @@ try {
        <input className={input} type="text" placeholder='password' onChange={(e)=> setPassword(e.target.value)}/>
 
        <div  className='w-full flex justify-end  sm:w-3/4  md:w-3/4'>
-       <button className={button} onClick={handleLogin}>Login</button>
+       <button className={button} onClick={handleLogin}>{btnLoading ? 'loading...':'Login'}</button>
        </div>
    </div>
 <Toaster/>

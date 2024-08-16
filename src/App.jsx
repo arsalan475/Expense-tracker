@@ -48,7 +48,7 @@ const {loading} = useExpense()
         </Route>
      <Route path='/profile' element={
       <ProtectedRoute>
-      <Profile/>
+       <Profile/>
       </ProtectedRoute>
       }/>
      <Route path='/register' element={<Register/>}/>

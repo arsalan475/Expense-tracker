@@ -20,7 +20,8 @@ export default function Record({total,setTotal}) {
 
    const {data,dispatch,saving,income,loading} = useExpense()
    
-  
+  const [btnLoading1,setBtnLoading1] = useState(false)
+  const [btnLoading2,setBtnLoading2] = useState(false)
 
   
   
@@ -28,8 +29,9 @@ if(data?.length === 0 ) return
 
 async function handleDelete(id){
 
-
+  
   try {
+    setBtnLoading2(true)
   const res = await axios.post(`${endpoint}/remove/${id}`)
    console.log(res.data.msg)
   dispatch({type:'delete/entry',payload:id})
@@ -42,11 +44,15 @@ async function handleDelete(id){
   })
   } catch (error) {
     console.error('Error deleting entry:', error.message)
+  }finally{
+    setBtnLoading2(false)
   }
 }
 
 async function handleCloseRecord(){
   try {
+
+    setBtnLoading1(true)
     const res = await axios.post(`${endpoint}/closerecord`,
        {
         saving,
@@ -58,7 +64,7 @@ async function handleCloseRecord(){
      )
    
      setTotal('')
-     dispatch({type:'cleanUp/entry'}) 
+     dispatch({type:'closeRecord',}) 
 
    
      console.log(res)
@@ -66,6 +72,8 @@ async function handleCloseRecord(){
 
     console.log(error.message)
     
+  }finally{
+    setBtnLoading1(false)
   }
  }
  
@@ -77,7 +85,7 @@ async function handleCloseRecord(){
       <div id='recordContainer' className=' py-8 bg-orange-300 w-full flex flex-col mt-4 items-center  '>
          <div className='w-[95%] text-[10px] sm:text-sm mx-2 flex justify-between items-center ring ring-orange-100  md:w-2/3 lg:text-lg lg:w-2/3 mb-4 py-1 px-4 md:px-4 md:py-2 ' >
           <Summary/>
-         <button className={button} onClick={handleCloseRecord}>Close Record</button>
+         <button className={button} onClick={handleCloseRecord}>{btnLoading1? 'loading': 'Close Record'}</button>
          </div>
            <table className='border text-xs sm:text-sm border-white w-[95%] md:w-2/3 lg:w-2/3 lg:text-lg'>
           
@@ -99,7 +107,7 @@ async function handleCloseRecord(){
                            <td>{entry.date}/{entry.month}/{entry.year}</td>
                            {/* <td>{entry.fullDate}</td> */}
                            <td>{entry.category}</td>
-                           <td><button className={delteButton} id={entry._id} onClick={(e)=>handleDelete(e.target.id)}>Delete</button></td>
+                           <td><button className={delteButton} id={entry._id} onClick={(e)=>handleDelete(e.target.id)}>{btnLoading2? 'loading': 'Delete'}</button></td>
                        </tr>
                 })}
            

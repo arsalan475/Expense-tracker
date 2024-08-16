@@ -13,7 +13,8 @@ export default function AddQuery({total,setTotal}) {
 const [title,setTitle] = useState('');
 const [amount,setAmount] = useState('');
 const [category,setCategory] = useState('');
-
+const [btnLoading1,setBtnLoading1] = useState(false);
+const [btnLoading2,setBtnLoading2] = useState(false);
 
 const {dispatch,income,setError,error} = useExpense()
 
@@ -122,6 +123,8 @@ console.log(error.message)
 
 async function handleAddRecord(){
  try {
+
+  setBtnLoading1(true)
    const res = await  axios.post(`${endpoint}/addincome`,{
        income:total
      },{
@@ -134,6 +137,8 @@ async function handleAddRecord(){
      
  } catch (error) {
    toast(error.message)
+ }finally{
+  setBtnLoading1(false)
  }
   }
 
@@ -157,7 +162,12 @@ async function handleEntries(){
       alert('now your expanding more than your income')
   }
 
+
+
   try{
+
+    setBtnLoading2(true)
+    
     const res = await axios.post(`${endpoint}/add`,
       {
         title,
@@ -186,8 +196,10 @@ async function handleEntries(){
     
     
   }catch(e){
-    toast(e.message)
+    toast.error(e.message)
     
+  }finally{
+    setBtnLoading2(false)
   }
    
 
@@ -218,7 +230,7 @@ const button = 'bg-orange-400 font-semibold capitalize rounded-lg py-1 px-2 sm:p
       setTotal(e.target.value)
       }}  className={`${input} sm:w-auto`}/>
 
-    <button className={button} onClick={handleAddRecord}>add income</button>
+    <button className={button} onClick={handleAddRecord}>{btnLoading1? 'loading...': 'Add Income'}</button>
 
     </div>
 
@@ -235,7 +247,7 @@ const button = 'bg-orange-400 font-semibold capitalize rounded-lg py-1 px-2 sm:p
     <option value="Event">Event</option>
     <option value="Others">Others</option>
     </select>
-    <button className={button} onClick={handleEntries}>Add To Record</button>
+    <button className={button} onClick={handleEntries}>{btnLoading2? 'loading...': 'Add'}</button>
     </div>
     <Toaster/>
    

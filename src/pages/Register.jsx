@@ -11,13 +11,19 @@ export default function Register() {
 
     const [password,setPassword] = useState(null)
 
+    const [btnLoading,setBtnLoading] = useState(false)
+
 
 
 
 
    async function handleRegigistration(){
      
+    
      try {
+
+      setBtnLoading(true)
+      
       
     const res = await axios.post(`${endpoint}/register`,{
          userName,
@@ -49,6 +55,8 @@ export default function Register() {
         },
       duration:2000
       })
+     }finally{
+      setBtnLoading(false)
      }
     }
 
@@ -64,7 +72,7 @@ export default function Register() {
         <input className={input} type="text" placeholder='email' onChange={(e)=>    setEmail(e.target.value)}/>
         <input className={input}  type="text" placeholder='password' onChange={(e)=> setPassword(e.target.value)}/>
         <div className='w-full flex justify-end  sm:w-3/4  md:w-3/4'> 
-        <button  className={button} onClick={handleRegigistration}>Register</button>
+        <button  className={button} onClick={handleRegigistration}>{btnLoading ? 'loading...':'Register'}</button>
         </div>
         
       </div>

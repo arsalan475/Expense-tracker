@@ -33,7 +33,9 @@ function reducer(state,action){
             const deleteEntry = state.data.filter((el) =>  el._id !== action.payload )
             return {...state,data:deleteEntry}
             case 'cleanUp/entry':
-                return {...initialState,loading:false}
+                return {...initialState,loading:true}
+                case 'closeRecord':
+                    return {...initialState,loading:false}
                 case 'loading/entry':
                 return {...state,loading:false}
         default : return
