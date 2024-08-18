@@ -51,8 +51,9 @@ const {data,income,loading} = state
 const [saving,setSaving] = useState(null)
 const [error,setError] = useState('')
 const [user,setUser] = useState(null)
+const [total,setTotal] = useState('');
 
-  return  <context.Provider value={{user,setUser,data,income,dispatch,saving,setSaving,loading,setError,error}}>
+  return  <context.Provider value={{user,setUser,data,income,dispatch,saving,setSaving,loading,setError,error,total,setTotal}}>
 {children}
     </context.Provider>
   

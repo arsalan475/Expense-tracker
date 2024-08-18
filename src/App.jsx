@@ -16,9 +16,10 @@ import ProtectedRoute from './protect route/ProtectedRoute.jsx'
 
 export const endpoint = 'https://expense-track-backend-staging.up.railway.app'
 
+
 export default function App() {
 
-  const [total,setTotal] = useState('');
+  
 const {loading} = useExpense()
 
   return   <BrowserRouter>
@@ -36,8 +37,8 @@ const {loading} = useExpense()
             
               <>
             <div className='flex flex-col items-center'>
-          <AddQuery total={total} setTotal={setTotal}/>
-          {loading ? <Loader/> :  <Record total={total} setTotal={setTotal}/>}
+          <AddQuery/>
+          {loading ? <Loader/> :  <Record />}
                 
                  </div>
                  </>

@@ -16,9 +16,9 @@ const button = 'bg-white font-semibold mt-2 capitalize rounded-lg py-1 px-2 sm:p
 const delteButton = 'bg-orange-400 font-semibold capitalize rounded-lg py-1   px-4 text-sm md:py-1 text-xs sm:text-sm  text-white  focus:outline-none focus:ring focus:ring-orange-300 focus:ring-offset-2'
 
 
-export default function Record({total,setTotal}) {
+export default function Record() {
 
-   const {data,dispatch,saving,income,loading} = useExpense()
+   const {data,dispatch,saving,income,loading,setTotal} = useExpense()
    
   const [btnLoading1,setBtnLoading1] = useState(false)
   const [btnLoading2,setBtnLoading2] = useState(false)

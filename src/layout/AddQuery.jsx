@@ -6,7 +6,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import Error from '../components/Error';
 import { endpoint } from '../App';
 
-export default function AddQuery({total,setTotal}) {
+export default function AddQuery() {
 
   const [record,setRecord] = useState(null)
  
@@ -16,7 +16,7 @@ const [category,setCategory] = useState('');
 const [btnLoading1,setBtnLoading1] = useState(false);
 const [btnLoading2,setBtnLoading2] = useState(false);
 
-const {dispatch,income,setError,error} = useExpense()
+const {dispatch,income,setError,error,total,setTotal} = useExpense()
 
 // useEffect(()=>{
 //   dispatch({type:'add/income',payload:total})

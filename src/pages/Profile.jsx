@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useExpense } from '../Context/ExpensContext'
 import { endpoint } from '../App'
-import toast, { Toaster } from 'react-hot-toast'
+
 import Loader from '../components/Loader'
 
 export default function Profile() {
@@ -60,7 +60,7 @@ if(loading && !profile?.email){
       </div>
         
     </div>
-    <Toaster/>
+ 
     </div>
   )
 }
