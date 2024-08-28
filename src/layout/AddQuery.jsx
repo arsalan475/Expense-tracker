@@ -16,7 +16,7 @@ const [category,setCategory] = useState('');
 const [btnLoading1,setBtnLoading1] = useState(false);
 const [btnLoading2,setBtnLoading2] = useState(false);
 
-const {dispatch,income,setError,error,total,setTotal} = useExpense()
+const {dispatch,income,setError,error,total,setTotal,setUser} = useExpense()
 
 // useEffect(()=>{
 //   dispatch({type:'add/income',payload:total})
@@ -83,6 +83,9 @@ try {
         withCredentials: true,
     })
      
+
+    
+
         const res = await axios.get(`${endpoint}/currentdata`,{
           withCredentials:true,
         })
@@ -158,9 +161,9 @@ async function handleEntries(){
     return
   }
 
-  if(amount > income) {
-      alert('now your expanding more than your income')
-  }
+  // if(amount > income) {
+  //     alert('now your expanding more than your income')
+  // }
 
 
 

@@ -2,11 +2,14 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast'
 import { endpoint } from '../App'
+import { useNavigate } from 'react-router-dom'
+import { useExpense } from '../Context/ExpensContext'
 
 export default function Register() {
+  const navigate = useNavigate()
 
     const [userName,setUserName] = useState(null)
-
+    const {setUser} = useExpense()
     const [email,setEmail] = useState(null)
 
     const [password,setPassword] = useState(null)
@@ -14,7 +17,7 @@ export default function Register() {
     const [btnLoading,setBtnLoading] = useState(false)
 
 
-
+   
 
 
    async function handleRegigistration(){
@@ -32,19 +35,15 @@ export default function Register() {
       },
      {withCredentials:true})
 
+
+     if(res.data.status === 400) throw new Error(res.data.errors)
+
+      console.log(res.data.user)
+     setUser(res.data.user)
+
+     if(res.data.user)  navigate('/app/tracker')
     
-     toast.success(res?.data?.errors || res.data,{
-      position:'bottom-center',
-      style:{
-       textTransform:'capitalize',
-        color:`${res?.data?.errors ? '#f7f7f7' : '#333'}`,
-        background:`${res?.data?.errors ? 'red' : 'white'}`
-      },
-
-      icon:`${res?.data?.errors ? '🚫' : '✔'}`,
-
-      duration:3000
-    })
+    
      } catch (error) {
       console.log(error )
       toast.success(error.message ,{

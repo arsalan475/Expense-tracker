@@ -8,39 +8,14 @@ import Loader from '../components/Loader'
 export default function Profile() {
 
 
-const {dispatch} = useExpense()
+const {dispatch,user} = useExpense()
 const [loading,isLoading] = useState(true)
 
-const [profile,setProfile] = useState(null)
+const [profile,setProfile] = useState(()=> user)
 
-useEffect(function(){
+console.log(profile)
 
-  try{
-   async function getProfile(){
-    const res = await axios.get(`${endpoint}/getProfile`,{
-        withCredentials: true,
-    })
-
-   
-    setProfile(res.data.data)
-   
-    }
-
-    getProfile()
-  }catch(e){
-    console.log(e.message)
-  }finally{
-   isLoading(false)
-  }
-
-},[])
-
-
-if(loading && !profile?.email){
-  console.log('im running')
-  return <Loader/>
-}
-
+const creationDate = new Date(profile?.createdAt).toDateString()
 
   return (
     <div className='flex justify-center items-center ring ring-orange-300 py-6 px-4 mt-32 mx-4 rounded-lg text-orange-500 text-xs   font-semibold capitalize'>
@@ -55,7 +30,7 @@ if(loading && !profile?.email){
         <div  className='flex flex-col gap-y-8 w-full sm:w-1/2    sm:text-lg  ' >
            <div className='flex justify-between'> <span className='w-32 mx-8  inline-block'>Name</span> <span>{profile?.userName}</span> </div> 
            <div className='flex justify-between'> <span className='w-32 mx-8 inline-block'>Email</span>  <span className='lowercase'>{profile?.email}</span> </div>
-           <div className='flex justify-between'> <span className='w-32 mx-8'>Created At</span>  <span>{profile?.createdAt ? new Date(profile.createdAt).toLocaleString():''}</span> </div>
+           <div className='flex justify-between'> <span className='w-32 mx-8'>Created At</span>  <span>{creationDate  }</span> </div>
         </div>
       </div>
         

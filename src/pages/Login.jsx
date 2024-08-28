@@ -33,9 +33,10 @@ try {
 
      if(res.data.status === 400) throw new Error(res.data.errors)
      
+      
+      setUser(res.data.user)
 
-    setUser(res.data.user._id)
-     navigate('/app/tracker')
+   if(res.data.user)  navigate('/app/tracker')
 } catch (error) {
 
   toast.success(error.message ,{
