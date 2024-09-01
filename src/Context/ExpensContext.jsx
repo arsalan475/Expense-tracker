@@ -36,6 +36,10 @@ function reducer(state,action){
                 return {...initialState,loading:true}
                 case 'closeRecord':
                     return {...initialState,loading:false}
+                    case 'deactivated':
+                        return {...initialState,loading:false}
+                        case 'deleteRecord':
+                            return {...initialState,loading:false}
                 case 'loading/entry':
                 return {...state,loading:false}
         default : return

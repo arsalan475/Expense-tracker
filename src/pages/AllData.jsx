@@ -10,8 +10,8 @@ import { endpoint } from '../App';
 
 
 const inputContainer = ' py-12 px-8 rounded-lg flex flex-col gap-8  items-center bg-orange-100 ring ring-orange-400 ring-offset-4 w-3/4 md:w-2/4 lg:w-1/3 '
-const input = 'w-full p-2 rounded-md sm:w-3/4 md:w-3/4   placeholder:px-2 placeholder:uppercase  ring ring-orange-300  focus:outline-none focus:ring focus:ring-orange-400 '
-const button = 'bg-orange-400 font-semibold capitalize rounded-lg py-3 px-4 text-sm md:py-2 md:text-lg text-white  focus:outline-none focus:ring focus:ring-orange-300 focus:ring-offset-2'
+const input = 'w-full p-1 sm:p-2 rounded-md sm:w-3/4 md:w-3/4   placeholder:px-2 placeholder:uppercase  ring ring-orange-300  focus:outline-none focus:ring focus:ring-orange-400 '
+const button = 'bg-orange-400 font-semibold capitalize rounded-lg py-1 px-3 sm:py-2 sm:px-5 text-sm md:py-2 md:text-lg text-white  focus:outline-none focus:ring focus:ring-orange-300 focus:ring-offset-2'
 
 
 export default function AllData() {
@@ -60,6 +60,20 @@ export default function AllData() {
                 }
                 
 
+               async function deleteRecords(recordId){
+                try{
+                  const res = await axios.get(`${endpoint}/deleteRecord/${recordId}`,{
+                    withCredentials: true, 
+                  })
+
+                  dispatch({type:'deleteRecord'})
+                  useFetch(dispatch,isLoading,setError)  
+                 
+                  }catch(err){
+                    alert(err.message)
+                  }
+                }
+
               
                 if(loading){
                   return <Loader/>
@@ -75,7 +89,7 @@ export default function AllData() {
           
 <input className={input} type="date" name="searchByDate" id="searchByDate"  placeholder='Search By Date'  onInput={(e)=> {
           setSearchByDate(e.target.value)
-          console.log(e.target.value)
+       
           }}/>
 
 <button className={button} onClick={handleFilterFullDate}>Search</button>
@@ -85,7 +99,7 @@ export default function AllData() {
 
 <input className={input} type="Number" name="searchByMonth" id="searchByMonth"  placeholder='Search By Month'  onChange={(e)=> {
           setSearchByMonth(e.target.value)
-          console.log(e.target.value)
+       
           }}/>
 
 <button className={button} onClick={handleFilterMonth}>Search</button>
@@ -123,16 +137,16 @@ export default function AllData() {
                             
               <tr className='border border-white text-orange-500 font-semibold'>
                 <th>closing Date</th>
-                <th>Status</th>
                 <th>Saving</th>
                 <th>Income</th>
+                <th>Action</th>
                 {/* <th>Actions</th> */}
                 </tr>
               <tr className='border border-white font-semibold'>
                             <td>{entry.fullDate}</td>
-                            <td >closed record</td>
                             <td>{entry?.saving}</td>
                             <td >{entry?.monthlyIncome}</td>
+                            <td onClick={()=>deleteRecords(entry?.record)} className='bg-orange-100 text-orange-400 cursor-pointer hover:bg-orange-50 active:bg-orange-500 active:text-white'>Delete Record</td>
                             </tr>
                             <h1 className='text-center'>Next Record ⬇</h1>
                         

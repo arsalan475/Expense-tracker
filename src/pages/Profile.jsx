@@ -5,17 +5,44 @@ import { endpoint } from '../App'
 
 import Loader from '../components/Loader'
 
+
+
+const button = 'bg-orange-100 font-semibold capitalize rounded-lg py-1  px-4 text-xs sm:text-sm  md:text-{20px} text-orange-400  focus:outline-none focus:ring focus:ring-orange-300 focus:ring-offset-2'
+    
+
 export default function Profile() {
 
 
-const {dispatch,user} = useExpense()
-const [loading,isLoading] = useState(true)
+const {dispatch,user,setUser} = useExpense()
+
 
 const [profile,setProfile] = useState(()=> user)
 
 console.log(profile)
 
 const creationDate = new Date(profile?.createdAt).toDateString()
+
+
+
+async function deactivateAccount() {
+
+const disclaimer = confirm(`${user.userName} Are you sure you want to deactivate`)
+
+if(!disclaimer) return
+
+  try{
+  const res = await axios.get(`${endpoint}/deactivate`,{
+    withCredentials: true, 
+  })
+ 
+  dispatch({type:'deactivated'})
+  setUser('')
+  }catch(err){
+    alert(err.message)
+  }
+  
+
+}
 
   return (
     <div className='flex justify-center items-center ring ring-orange-300 py-6 px-4 mt-32 mx-4 rounded-lg text-orange-500 text-xs   font-semibold capitalize'>
@@ -31,6 +58,7 @@ const creationDate = new Date(profile?.createdAt).toDateString()
            <div className='flex justify-between'> <span className='w-32 mx-8  inline-block'>Name</span> <span>{profile?.userName}</span> </div> 
            <div className='flex justify-between'> <span className='w-32 mx-8 inline-block'>Email</span>  <span className='lowercase'>{profile?.email}</span> </div>
            <div className='flex justify-between'> <span className='w-32 mx-8'>Created At</span>  <span>{creationDate  }</span> </div>
+           <button className={button} onClick={()=> deactivateAccount()}>Deactivate Account</button>
         </div>
       </div>
         

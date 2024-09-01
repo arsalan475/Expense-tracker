@@ -14,13 +14,13 @@ import Home from './pages/Home.jsx'
 import Loader from './components/Loader.jsx'
 import ProtectedRoute from './protect route/ProtectedRoute.jsx'
 
-// export const endpoint = 'https://expense-track-backend-staging.up.railway.app'
-export const endpoint = 'http://localhost:3000'
+export const endpoint = 'https://expense-track-backend-staging.up.railway.app'
+// export const endpoint = 'http://localhost:3000'
 
 export default function App() {
 
   
-const {loading} = useExpense()
+const {loading,user} = useExpense()
 
   return   <BrowserRouter>
 <Nav/>
@@ -52,9 +52,12 @@ const {loading} = useExpense()
        <Profile/>
       </ProtectedRoute>
       }/>
+
+      {!user && <>
      <Route path='/register' element={<Register/>}/>
      <Route path='/login' element={<Login/>}/>
-     
+     </>
+      }
     </Routes>
     </BrowserRouter> 
     
