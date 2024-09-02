@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useExpense } from '../Context/ExpensContext'
 import axios from 'axios'
 import { endpoint } from '../App'
@@ -36,16 +36,17 @@ export default function Nav() {
   return (
     <div className='fixed w-full top-0 z-10'>
         <ul className=' border-b-2 border-orange-200 flex justify-evenly bg-orange-400 py-4 tracking-wide text-white text-xs md:text-lg'>
-            <li><Link to='/'>Home</Link></li>
+            <li className='hover:text-orange-100'><NavLink to='/'>Home</NavLink></li >
             
            {user && <>
-           <li><Link to='/app/tracker'>App</Link></li>
-            <li><Link to='/profile'>Profile</Link></li>
+           <li className='hover:text-orange-100'><NavLink to='/app/tracker'>App</NavLink></li >
+            <li className='hover:text-orange-100'><NavLink to='/profile'>Profile</NavLink></li >
             <button className={button} onClick={()=>logOut()}>log out</button>
             </>}
             {!user && <>
-            <li> <Link to='/login'>Login</Link></li>
-            <li><Link to='/register'>Register</Link></li>
+            <li className='hover:text-orange-100'> <NavLink to='/login'>Login</NavLink></li >
+            <li className='hover:text-orange-100'><NavLink to='/register'>Register</NavLink></li >
+      
             </>
 }
         </ul>

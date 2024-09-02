@@ -61,7 +61,7 @@ export default function Register() {
 
     const inputContainer = ' py-12 px-8 rounded-lg flex flex-col gap-8  items-center bg-orange-100 ring ring-orange-400 ring-offset-4 w-3/4 md:w-2/4 lg:w-1/3 text-sm sm:text-lg md:text-xl'
     const input = 'w-full p-2 rounded-md sm:w-3/4 md:w-3/4   placeholder:px-2  placeholder:uppercase placeholder:text-sm sm:placeholder:text-lg md:placeholder:text-xl  ring ring-orange-300  focus:outline-none focus:ring focus:ring-orange-400 '
-    const button = 'bg-orange-400 font-semibold capitalize rounded-lg py-1 sm:py-3 px-4 text-sm md:py-2 md:text-lg text-white  focus:outline-none focus:ring focus:ring-orange-300 focus:ring-offset-2'
+    const button = ' hover:ring hover:ring-orange-400 hover:ring-offset-2 bg-orange-400 font-semibold capitalize rounded-lg py-1 sm:py-3 px-4 text-sm md:py-2 md:text-lg text-white  focus:outline-none focus:ring focus:ring-orange-300 focus:ring-offset-2'
     
   return (
     <div className='inset-0 z-[-10] absolute flex justify-center items-center '>
