@@ -108,7 +108,7 @@ export default function AllData() {
         <div id='recordContainer' className=" py-8 bg-orange-300 w-full flex flex-col  items-center ">
        
 
-      {error ? <Error errorName={error}/> :  data.length === 0 ? <div>No Data Available</div> :
+      {error ? <Error errorName={error}/> :  
                <table  className='border text-white py-5 text-[10px] sm:text-sm border-white w-[95%] md:w-2/3 md:text-lg lg:w-2/3 lg:text-xl'>
               
               <thead className='border border-white'>

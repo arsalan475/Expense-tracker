@@ -22,6 +22,8 @@ export default function Register() {
 
    async function handleRegigistration(){
      
+
+    if(!userName || !email || !password) return
     
      try {
 
